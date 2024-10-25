@@ -1,0 +1,23 @@
+{
+  "name": "phantomaton",
+  "version": "1.0.0",
+  "main": "phantomaton.js",
+  "scripts": {
+    "all": "lovecraft -a",
+    "cov": "lovecraft -c",
+    "lint": "lovecraft -l",
+    "test": "lovecraft"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/phantomaton-ai/phantomaton.git"
+  },
+  "keywords": [],
+  "author": "Phantomaton",
+  "license": "MIT",
+  "description": "",
+  "type": "module",
+  "devDependencies": {
+    "lovecraft": "^1.0.2"
+  }
+}
