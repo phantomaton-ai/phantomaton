@@ -18,8 +18,15 @@ class Phantomaton {
    */
   imports(body) {
     const modules = body.split('\n').map(m => m.trim()).filter(m => m.length > 0);
-    // Implement module importing logic here
-    console.log(`Imported modules: ${JSON.stringify(modules, null, 2)}`);
+    this.promise = Promise.all(modules.map(async (module) => {
+      const { install } = await import(module).default;
+      install.forEach(component => this.container.install(component));
+    }));
+  }
+
+  async start() {
+    if (this.promise) await this.promise;
+    this.container.resolve();
   }
 }
 
