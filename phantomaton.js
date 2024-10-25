@@ -1,11 +1,13 @@
 import aleister from 'aleister';
 import hierophant from 'hierophant';
+import priestess from 'priestess';
 import necronomicon from 'necronomicon';
 
 class Phantomaton {
   constructor(text) {
     this.text = text;
     this.container = hierophant();
+    this.container.install(priestess.start.resolver());
   }
 
   /**
@@ -26,7 +28,8 @@ class Phantomaton {
 
   async start() {
     if (this.promise) await this.promise;
-    const start = this.container.resolve(start);
+    const [start] = this.container.resolve(priestess.start.resolve);
+    return start();
   }
 }
 
