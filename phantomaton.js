@@ -5,22 +5,20 @@ class Phantomaton {
   /**
    * Imports the specified modules for use in the Phantomaton system.
    * 
-   * @param {string[]} modules - The names of the modules to import.
+   * @param {string} modules - Newline-separated names of the modules to import.
+   * @body modules
    * @returns {void}
    * @example phantomaton.import(['phantomaton-anthropic', 'phantomaton-cli'])
    */
-  import(modules) {
+  imports(body) {
+    const modules = body.split('\n').map(m => m.trim()).filter(m => m.length > 0);
     // Implement module importing logic here
-    console.log(`Imported modules: ${modules.join(', ')}`);
+    console.log(`Imported modules: ${JSON.stringify(modules, null, 2)}`);
   }
 }
 
 const { commands } = aleister(Phantomaton)();
-const necro = necronomicon({
-  commands,
-  symbols: {
-    // Custom smarkup symbols can be configured here
-  }
-});
+const spellbook = necronomicon({ commands });
 
-export default (text) => necro.execute(text);
+export default (text) => spellbook.execute(text);
+
