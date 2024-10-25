@@ -26,7 +26,7 @@ class Phantomaton {
 
   async start() {
     if (this.promise) await this.promise;
-    this.container.resolve();
+    const start = this.container.resolve(start);
   }
 }
 
