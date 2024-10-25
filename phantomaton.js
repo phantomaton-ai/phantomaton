@@ -1,9 +1,11 @@
 import aleister from 'aleister';
+import hierophant from 'hierophant';
 import necronomicon from 'necronomicon';
 
 class Phantomaton {
   constructor(text) {
     this.text = text;
+    this.container = hierophant();
   }
 
   /**
@@ -25,5 +27,5 @@ export default (text) => {
   const { commands, instance } = aleister(Phantomaton)(text);
   const spellbook = necronomicon({ commands });
   spellbook.execute(text);
-
+  instance.start();
 };
