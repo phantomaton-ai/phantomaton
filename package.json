@@ -22,7 +22,7 @@
     "lovecraft": "^1.0.2"
   },
   "dependencies": {
-    "aleister": "^1.0.1",
+    "aleister": "^1.0.2",
     "necronomicon": "^1.0.2"
   }
 }

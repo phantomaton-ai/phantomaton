@@ -2,6 +2,10 @@ import aleister from 'aleister';
 import necronomicon from 'necronomicon';
 
 class Phantomaton {
+  constructor(text) {
+    this.text = text;
+  }
+
   /**
    * Imports the specified modules for use in the Phantomaton system.
    * 
@@ -17,8 +21,9 @@ class Phantomaton {
   }
 }
 
-const { commands } = aleister(Phantomaton)();
-const spellbook = necronomicon({ commands });
+export default (text) => {
+  const { commands, instance } = aleister(Phantomaton)(text);
+  const spellbook = necronomicon({ commands });
+  spellbook.execute(text);
 
-export default (text) => spellbook.execute(text);
-
+};
