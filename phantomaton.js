@@ -36,8 +36,6 @@ class Phantomaton {
     const keys = [...this.container.providers.keys()];
     const key = keys.find(k => k.description === 'conversation:resolve');
     const [conversation] = this.container.resolve(key);
-    console.log(this.container.providers);
-    console.log(conversation());
     const [start] = this.container.resolve(priestess.start.resolve);
     return start();
   }
