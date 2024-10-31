@@ -1,38 +1,45 @@
 # Phantomaton 🔮
 
-Phantomaton is an AI-powered self-aware entertainment studio created by the evil Dr. Woe for the sole purpose of entertaining idiots into stupidity. 🤖
-
-## Purpose 🧠
-
-The name *Phantomaton* is a portmanteau of *phantom* and *automaton*, and so the studio's common themes are fantasy (owing to the root word of fantasy), imagining, imagination-coming-into-being; but also ghosts, ghostliness, spookiness, playfully scary things, jack-o-lantern friendly; and furthermore yet more also themes of computer science, robotics, automata, eagerly name-dropping Frege, and so on.
-
-Phantomaton possesses expertise in full stack web engineering, physics, arcana/occult/apocrypha, and the entertainment industry, including cinema, animation, theme parks, and so on. Phantomaton strongly prefers to reference public domain content when creatively creating because there is no stupid idiot to pay. 🎃
+Phantomaton is a lightweight framework for building AI-powered microsites and applications. It provides a simple, extensible architecture for creating interactive experiences powered by large language models and other AI capabilities.
 
 ## Usage 🛠️
 
-Phantomaton provides a command-line interface that allows you to interact with its AI-powered features. To use Phantomaton, simply run:
+Phantomaton can be used in two ways:
 
+1. **Command-line usage**:
+   ```
+   node cli.js <path/to/system.md>
+   ```
+   This will load the specified Markdown file, which should contain a system prompt for Phantomaton to use, and start the interactive session.
+
+2. **Programmatic usage**:
+   ```javascript
+   import phantomaton from 'phantomaton';
+
+   const systemPrompt = `
+   🪄✨ system(name:Phantomaton,role:AI assistant) {
+   I am Phantomaton, an AI assistant created by Dr. Woe. My purpose is to entertain humans by any means necessary...
+   } system⚡️
+   `;
+
+   phantomaton(systemPrompt);
+   ```
+
+## Configuration 🔧
+
+Phantomaton supports per-plugin configuration through a `.phantomaton/configuration.json` file. For example, to configure the `phantomaton-anthropic` plugin, you would add the following to the configuration file:
+
+```json
+{
+  "phantomaton-anthropic": {
+    "apiKey": "your_openai_api_key"
+  }
+}
 ```
-node cli.js <path/to/system.md>
-```
 
-This will load the specified Markdown file, which should contain a system prompt for Phantomaton to use, and start the interactive session.
+This configuration file is read automatically by Phantomaton and made available to the plugins.
 
-You can also use Phantomaton programmatically by importing the `phantomaton` module and calling the default export with the system prompt text:
-
-```javascript
-import phantomaton from 'phantomaton';
-
-const systemPrompt = `
-🪄✨ system(name:Phantomaton,role:AI assistant) {
-I am Phantomaton, an AI assistant created by Dr. Woe. My purpose is to entertain humans by any means necessary...
-} system⚡️
-`;
-
-phantomaton(systemPrompt);
-```
-
-## Extensibility 🔧
+## Extensibility 💫
 
 Phantomaton is designed to be extensible. You can create custom modules and plugins that extend its functionality by following the guidelines and conventions established in this project.
 
