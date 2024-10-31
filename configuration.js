@@ -1,4 +1,5 @@
 import fs from 'fs';
+import path from 'path';
 
 const configuration = module => {
   const file = path.join('.phantomaton', 'configuration.json');
