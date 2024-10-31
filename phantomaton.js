@@ -29,7 +29,10 @@ class Phantomaton {
 
   async start() {
     if (this.promise) await this.promise;
-    const providers = this.container.providers.get(priestess.start.impl);
+    const keys = [...this.container.providers.keys()];
+    const key = keys.find(k => k.description === 'conversation:resolve');
+    const [conversation] = this.container.resolve(key);
+    console.log(conversation());
     const [start] = this.container.resolve(priestess.start.resolve);
     return start();
   }

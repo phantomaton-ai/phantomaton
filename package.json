@@ -23,7 +23,7 @@
     "lovecraft": "^1.0.3",
     "phantomaton-anthropic": "^1.0.5",
     "phantomaton-cli": "^1.0.3",
-    "phantomaton-conversations": "^1.0.0"
+    "phantomaton-conversations": "^1.0.1"
   },
   "dependencies": {
     "aleister": "^1.0.2",
