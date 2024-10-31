@@ -20,8 +20,8 @@
   "type": "module",
   "devDependencies": {
     "lovecraft": "^1.0.2",
-    "phantomaton-anthropic": "^1.0.4",
-    "phantomaton-cli": "^1.0.1",
+    "phantomaton-anthropic": "^1.0.5",
+    "phantomaton-cli": "^1.0.3",
     "phantomaton-conversations": "^1.0.0"
   },
   "dependencies": {
