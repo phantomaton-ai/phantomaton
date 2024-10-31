@@ -4,6 +4,7 @@ import priestess from 'priestess';
 import necronomicon from 'necronomicon';
 
 import configuration from './configuration.js';
+import importer from './importer.js';
 
 class Phantomaton {
   constructor(text) {
@@ -25,7 +26,7 @@ class Phantomaton {
   imports(body) {
     const modules = body.split('\n').map(m => m.trim()).filter(m => m.length > 0);
     this.promise = Promise.all(modules.map(async (module) => {
-      const imported = await import(module);
+      const imported = await importer.import(module);
       const { install } = imported.default(configuration(module));
       install.forEach(component => this.container.install(component));
     }));

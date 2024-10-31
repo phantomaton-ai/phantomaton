@@ -1,24 +1,42 @@
 import { expect, stub } from 'lovecraft';
 import hierophant from 'hierophant';
 import priestess from 'priestess';
-import Phantomaton from './phantomaton.js';
+
+import importer from './importer.js';
+import phantomaton from './phantomaton.js';
+
+const TEST = `
+/imports {
+  start-plugin
+  some-plugin
+  some-other-plugin
+} imports!
+
+Testbot!
+`;
 
 describe('Phantomaton', () => {
-  let instance;
+  let start;
 
-  beforeEach(() => {
-    instance = new Phantomaton('Hello, world!');
+  beforeEach(async () => {
+    start = stub();
+    const installs = {
+      'start-plugin': [
+        priestess.start.provider([], () => start)
+      ]
+    };
+    stub(importer, 'import').callsFake(module => ({ default: () => ({
+      install: installs[module] || []
+    }) }));
+    await phantomaton(TEST);
   });
 
-  it('imports modules', async () => {
-    const importsSpy = stub(instance, 'imports');
-    await instance.start();
-    expect(importsSpy).to.have.been.called;
+  afterEach(() => {
+    importer.import.restore();
   });
 
-  it('starts the conversation', async () => {
-    const startSpy = stub(priestess, 'start').returns(() => {});
-    await instance.start();
-    expect(startSpy).to.have.been.called;
+
+  it('imports modules', () => {
+    expect(importer.import.calledWith('start-plugin')).to.be.true;
   });
 });
