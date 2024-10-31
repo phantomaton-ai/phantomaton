@@ -8,7 +8,7 @@ Phantomaton can be used in two ways:
 
 1. **Command-line usage**:
    ```
-   node cli.js <path/to/system.md>
+   phantomaton <path/to/system.md>
    ```
    This will load the specified Markdown file, which should contain a system prompt for Phantomaton to use, and start the interactive session.
 
@@ -17,13 +17,22 @@ Phantomaton can be used in two ways:
    import phantomaton from 'phantomaton';
 
    const systemPrompt = `
-   🪄✨ system(name:Phantomaton,role:AI assistant) {
+   /imports {
+     phantomaton-anthropic
+     phantomaton-cli
+     phantomaton-conversations
+     phantomaton-system
+   } imports!
+
    I am Phantomaton, an AI assistant created by Dr. Woe. My purpose is to entertain humans by any means necessary...
-   } system⚡️
    `;
 
    phantomaton(systemPrompt);
    ```
+
+### Commands ⚡️
+
+Phantomaton will load any plugins specified in an `imports` directive. Plugins are identified as module names, one per line, with whitespace ignored. Note that you will need to install modules separately before they can be imported.
 
 ## Configuration 🔧
 
@@ -32,7 +41,7 @@ Phantomaton supports per-plugin configuration through a `.phantomaton/configurat
 ```json
 {
   "phantomaton-anthropic": {
-    "apiKey": "your_openai_api_key"
+    "apiKey": "...your Anthropic API key..."
   }
 }
 ```
