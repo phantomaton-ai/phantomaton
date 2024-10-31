@@ -3,6 +3,8 @@ import hierophant from 'hierophant';
 import priestess from 'priestess';
 import necronomicon from 'necronomicon';
 
+import configuration from './configuration.js';
+
 class Phantomaton {
   constructor(text) {
     this.text = text;
@@ -24,7 +26,7 @@ class Phantomaton {
     const modules = body.split('\n').map(m => m.trim()).filter(m => m.length > 0);
     this.promise = Promise.all(modules.map(async (module) => {
       const imported = await import(module);
-      const { install } = imported.default({});
+      const { install } = imported.default(configuration(module));
       install.forEach(component => this.container.install(component));
     }));
   }
