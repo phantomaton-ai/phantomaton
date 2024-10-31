@@ -1,3 +1,5 @@
+#!/usr/bin/env node
+
 import phantomaton from './phantomaton.js';
 import fs from 'fs';
 import path from 'path';
