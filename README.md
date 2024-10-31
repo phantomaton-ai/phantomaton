@@ -8,7 +8,7 @@ Phantomaton can be used in two ways:
 
 1. **Command-line usage**:
    ```
-   phantomaton <path/to/system.md>
+   npx phantomaton <path/to/system.md>
    ```
    This will load the specified Markdown file, which should contain a system prompt for Phantomaton to use, and start the interactive session.
 
