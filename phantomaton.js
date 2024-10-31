@@ -16,13 +16,12 @@ class Phantomaton {
    * @param {string} modules - Newline-separated names of the modules to import.
    * @body modules
    * @returns {void}
-   * @example phantomaton.import(['phantomaton-anthropic', 'phantomaton-cli'])
+   * @example phantomaton.import('phantomaton-anthropic\nphantomaton-cli')
    */
   imports(body) {
     const modules = body.split('\n').map(m => m.trim()).filter(m => m.length > 0);
     this.promise = Promise.all(modules.map(async (module) => {
       const imported = await import(module);
-      console.log(module, imported, imported.default);
       const { install } = imported.default({});
       install.forEach(component => this.container.install(component));
     }));
@@ -30,14 +29,15 @@ class Phantomaton {
 
   async start() {
     if (this.promise) await this.promise;
+    const providers = this.container.providers.get(priestess.start.impl);
     const [start] = this.container.resolve(priestess.start.resolve);
     return start();
   }
 }
 
-export default (text) => {
+export default async (text) => {
   const { commands, instance } = aleister(Phantomaton)(text);
   const spellbook = necronomicon({ commands });
   spellbook.execute(text);
-  instance.start();
+  await instance.start();
 };
