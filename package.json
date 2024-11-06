@@ -28,7 +28,7 @@
   "dependencies": {
     "aleister": "^1.0.2",
     "hierophant": "^1.0.1",
-    "necronomicon": "^1.0.2",
+    "necronomicon": "^1.1.1",
     "priestess": "^1.0.0"
   }
 }
