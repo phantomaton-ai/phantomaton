@@ -16,18 +16,16 @@ Phantomaton can be used in two ways:
    ```javascript
    import phantomaton from 'phantomaton';
 
-   const systemPrompt = `
-   /imports {
-     phantomaton-anthropic
-     phantomaton-cli
-     phantomaton-conversations
-     phantomaton-system
-   } imports!
+   const prompt = `
+/install(module:phantomaton-anthropic)
+/install(module:phantomaton-cli)
+/install(module:phantomaton-conversations)
+/install(module:phantomaton-system)
 
    I am Phantomaton, an AI assistant created by Dr. Woe. My purpose is to entertain humans by any means necessary...
    `;
 
-   phantomaton(systemPrompt);
+   phantomaton(prompt);
    ```
 
 ### Commands ⚡️
