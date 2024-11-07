@@ -11,28 +11,28 @@ class Phantomaton {
     this.container = hierophant();
     this.container.install(priestess.input.resolver());
     this.container.install(priestess.start.resolver());
+    this.promises = [];
   }
 
   /**
-   * Imports the specified modules for use in the Phantomaton system.
+   * Installs the specified plugin for use in the Phantomaton system.
    * 
-   * @param {string} modules - Newline-separated names of the modules to import.
-   * @body modules
+   * @param {string} module - Name of the plugin to install
    * @returns {void}
    * @example phantomaton.import('phantomaton-anthropic\nphantomaton-cli')
    */
-  imports(body) {
-    const modules = body.split('\n').map(m => m.trim()).filter(m => m.length > 0);
-    this.promise = Promise.all(modules.map(async (module) => {
+  install(module) {
+    this.promises.push(new Promise(async resolve => {
       const imported = await importer.import(module);
       const { install } = imported.default(configuration(module));
       install.forEach(component => this.container.install(component));
+      resolve();
     }));
   }
 
   async start(input) {
     this.container.install(priestess.input.provider([], () => () => input));
-    if (this.promise) await this.promise;
+    await Promise.all(this.promises);
     const keys = [...this.container.providers.keys()];
     const key = keys.find(k => k.description === 'conversation:resolve');
     const [conversation] = this.container.resolve(key);

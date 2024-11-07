@@ -1,8 +1,6 @@
-/imports {
-  phantomaton-anthropic
-  phantomaton-cli
-  phantomaton-conversations
-  phantomaton-system
-} imports!
+/install(module:phantomaton-anthropic)
+/install(module:phantomaton-cli)
+/install(module:phantomaton-conversations)
+/install(module:phantomaton-system)
 
 Basic chatbot named Clarence. Fun and friendly. Loves emoji.
