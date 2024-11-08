@@ -6,11 +6,9 @@ import importer from './importer.js';
 import phantomaton from './phantomaton.js';
 
 const TEST = `
-/imports {
-  start-plugin
-  some-plugin
-  some-other-plugin
-} imports!
+/install(module:start-plugin)
+/install(module:some-plugin)
+/install(module:some-other-plugin)
 
 Testbot!
 `;
