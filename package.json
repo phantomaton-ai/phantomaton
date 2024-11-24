@@ -22,7 +22,7 @@
   "devDependencies": {
     "lovecraft": "^1.0.3",
     "phantomaton-anthropic": "^1.0.7",
-    "phantomaton-cli": "^1.0.4",
+    "phantomaton-cli": "^1.0.5",
     "phantomaton-conversations": "^1.0.1"
   },
   "dependencies": {
