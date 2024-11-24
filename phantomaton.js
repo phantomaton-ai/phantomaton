@@ -33,9 +33,6 @@ class Phantomaton {
   async start(input) {
     this.container.install(priestess.input.provider([], () => () => input));
     await Promise.all(this.promises);
-    const keys = [...this.container.providers.keys()];
-    const key = keys.find(k => k.description === 'conversation:resolve');
-    const [conversation] = this.container.resolve(key);
     const [start] = this.container.resolve(priestess.start.resolve);
     return start();
   }
