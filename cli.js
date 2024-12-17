@@ -6,5 +6,6 @@ import path from 'path';
 
 const [, , filename] = process.argv;
 const content = fs.readFileSync(filename, 'utf8');
+const root = path.dirname(filename);
 
-phantomaton(content);
+phantomaton(content, root);

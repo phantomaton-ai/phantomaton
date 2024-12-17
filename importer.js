@@ -12,31 +12,10 @@ class Importer {
    * @returns {Promise<Module>} Imported module
    */
   async import(name) {
-    try {
-      // If it's a relative path, resolve it relative to the root
-      if (name.startsWith('./') || name.startsWith('../')) {
-        const fullPath = path.resolve(this.root, name);
-        return await import(`file://${fullPath}`);
-      }
-      
-      // Otherwise, use standard import
-      return await import(name);
-    } catch (error) {
-      console.error(`Error importing ${name}:`, error);
-      throw error;
-    }
-  }
-
-  /**
-   * Creates an importer with a specific root directory
-   * @param {string} root - Root directory for relative imports
-   * @returns {Importer} New Importer instance
-   */
-  static fromRoot(root) {
-    return new Importer(root);
+   return (name.startsWith('../') || name.startsWith('./')) ?
+      await import(`file://${path.resolve(this.root, name)}`) :
+      await import(name);
   }
 }
 
-const importer = new Importer();
-export default importer;
-export { Importer };
+export default root => new Importer(root);

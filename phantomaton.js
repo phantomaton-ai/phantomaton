@@ -7,21 +7,19 @@ import priestess from 'priestess';
 import necronomicon from 'necronomicon';
 
 import configuration from './configuration.js';
-import importer, { Importer } from './importer.js';
+import importer from './importer.js';
 
 // Determine the directory of the current module
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 class Phantomaton {
-  constructor() {
+  constructor(root) {
     this.container = hierophant();
     this.container.install(priestess.input.resolver());
     this.container.install(priestess.start.resolver());
     this.promises = [];
-    
-    // Create a project-specific importer
-    this.importer = Importer.fromRoot(__dirname);
+    this.importer = importer(root);
   }
 
   /**
@@ -33,7 +31,6 @@ class Phantomaton {
    */
   install(module) {
     this.promises.push(new Promise(async resolve => {
-      // Use the project-specific importer
       const imported = await this.importer.import(module);
       const { install } = imported.default(configuration(module));
       install.forEach(component => this.container.install(component));
@@ -49,8 +46,8 @@ class Phantomaton {
   }
 }
 
-export default async (text) => {
-  const { commands, instance } = aleister(Phantomaton)();
+export default async (text, root) => {
+  const { commands, instance } = aleister(Phantomaton)(root);
   const spellbook = necronomicon({ commands, includes: { text: true, results: false } });
   await instance.start(spellbook.execute(text));
 };
