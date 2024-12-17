@@ -24,8 +24,9 @@ Phantomaton can be used in two ways:
 
    I am Phantomaton, an AI assistant created by Dr. Woe. My purpose is to entertain humans by any means necessary...
    `;
+   const root = '.'; // Optional; path used to resolve relative imports
 
-   phantomaton(prompt);
+   phantomaton(prompt, root);
    ```
 
 ### Commands ⚡️
