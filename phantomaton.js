@@ -1,10 +1,17 @@
+import path from 'path';
+import { fileURLToPath } from 'url';
+
 import aleister from 'aleister';
 import hierophant from 'hierophant';
 import priestess from 'priestess';
 import necronomicon from 'necronomicon';
 
 import configuration from './configuration.js';
-import importer from './importer.js';
+import importer, { Importer } from './importer.js';
+
+// Determine the directory of the current module
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 class Phantomaton {
   constructor() {
@@ -12,6 +19,9 @@ class Phantomaton {
     this.container.install(priestess.input.resolver());
     this.container.install(priestess.start.resolver());
     this.promises = [];
+    
+    // Create a project-specific importer
+    this.importer = Importer.fromRoot(__dirname);
   }
 
   /**
@@ -23,7 +33,8 @@ class Phantomaton {
    */
   install(module) {
     this.promises.push(new Promise(async resolve => {
-      const imported = await importer.import(module);
+      // Use the project-specific importer
+      const imported = await this.importer.import(module);
       const { install } = imported.default(configuration(module));
       install.forEach(component => this.container.install(component));
       resolve();
