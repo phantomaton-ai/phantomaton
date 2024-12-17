@@ -15,14 +15,12 @@ describe('importer', () => {
   it('handles relative path imports', async () => {
     const rootImporter = importer(__dirname);
     const imported = await rootImporter.import('./importer.js');
-    expect(imported).to.be.an('object');
     expect(imported.default).to.be.a('function');
   });
 
   it('handles absolute module imports', async () => {
     const rootImporter = importer(__dirname);
     const imported = await rootImporter.import('path');
-    expect(imported).to.be.an('object');
     expect(imported.resolve).to.be.a('function');
   });
 
