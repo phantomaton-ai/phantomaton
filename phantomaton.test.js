@@ -2,7 +2,7 @@ import { expect, stub } from 'lovecraft';
 import hierophant from 'hierophant';
 import priestess from 'priestess';
 
-import importer from './importer.js';
+import Importer from './importer.js';
 import phantomaton from './phantomaton.js';
 
 const TEST = `
@@ -23,18 +23,17 @@ describe('Phantomaton', () => {
         priestess.start.provider([], () => start)
       ]
     };
-    stub(importer, 'import').callsFake(module => ({ default: () => ({
+    stub(Importer.prototype, 'import').callsFake(module => ({ default: () => ({
       install: installs[module] || []
     }) }));
     await phantomaton(TEST);
   });
 
   afterEach(() => {
-    importer.import.restore();
+    Importer.prototype.import.restore();
   });
 
-
   it('imports modules', () => {
-    expect(importer.import.calledWith('start-plugin')).to.be.true;
+    expect(Importer.prototype.import.calledWith('start-plugin')).to.be.true;
   });
 });

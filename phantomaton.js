@@ -7,7 +7,7 @@ import priestess from 'priestess';
 import necronomicon from 'necronomicon';
 
 import configuration from './configuration.js';
-import importer from './importer.js';
+import Importer from './importer.js';
 
 // Determine the directory of the current module
 const __filename = fileURLToPath(import.meta.url);
@@ -19,7 +19,7 @@ class Phantomaton {
     this.container.install(priestess.input.resolver());
     this.container.install(priestess.start.resolver());
     this.promises = [];
-    this.importer = importer(root);
+    this.importer = new Importer(root);
   }
 
   /**

@@ -18,4 +18,4 @@ class Importer {
   }
 }
 
-export default root => new Importer(root);
+export default Importer;
