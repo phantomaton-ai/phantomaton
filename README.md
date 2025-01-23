@@ -49,7 +49,7 @@ This configuration file is read automatically by Phantomaton and made available 
 
 ## Extensibility 💫
 
-Phantomaton is designed to be extensible. You can create custom modules and plugins that extend its functionality by following the guidelines and conventions established in this project.
+Phantomaton is designed to be extensible. You can create custom modules and plugins that extend its functionality by following the guidelines and conventions established in this project. Use the [Phantomaton Plugins](https://github.com/phantomaton-ai/phantomaton-plugins) project to simplify plugin authorship.
 
 ## Contributing 🦄
 
