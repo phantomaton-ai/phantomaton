@@ -31,7 +31,7 @@ Phantomaton can be used in two ways:
 
 ### Commands ⚡️
 
-Phantomaton will load any plugins specified in an `imports` directive. Plugins are identified as module names, one per line, with whitespace ignored. Note that you will need to install modules separately before they can be imported.
+Phantomaton will load any plugins specified in an `install` directive. Plugins are identified as module names, one per line, with whitespace ignored. Note that you will need to `npm install` modules separately before they can be imported.
 
 ## Configuration 🔧
 
