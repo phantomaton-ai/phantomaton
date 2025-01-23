@@ -13,21 +13,21 @@ Phantomaton can be used in two ways:
    This will load the specified Markdown file, which should contain a system prompt for Phantomaton to use, and start the interactive session.
 
 2. **Programmatic usage**:
-   ```javascript
-   import phantomaton from 'phantomaton';
+    ```javascript
+    import phantomaton from 'phantomaton';
 
-   const prompt = `
-/install(module:phantomaton-anthropic)
-/install(module:phantomaton-cli)
-/install(module:phantomaton-conversations)
-/install(module:phantomaton-system)
+    const prompt = `
+    /install(module:phantomaton-anthropic)
+    /install(module:phantomaton-cli)
+    /install(module:phantomaton-conversations)
+    /install(module:phantomaton-system)
 
-   I am Phantomaton, an AI assistant created by Dr. Woe. My purpose is to entertain humans by any means necessary...
-   `;
-   const root = '.'; // Optional; path used to resolve relative imports
+    I am Phantomaton, an AI assistant created by Dr. Woe. My purpose is to entertain humans by any means necessary...
+    `;
+    const root = '.'; // Optional; path used to resolve relative imports
 
-   phantomaton(prompt, root);
-   ```
+    phantomaton(prompt, root);
+    ```
 
 ### Commands ⚡️
 
