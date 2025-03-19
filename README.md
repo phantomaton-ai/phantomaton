@@ -36,11 +36,11 @@ Phantomaton provides a flexible, extensible framework for exploring, generating,
 ### Command-line Usage
 
 ```bash
-# Use default configuration
+# Use default persona
 phantomaton
 
-# Optionally specify a custom configuration
-phantomaton path/to/custom/configuration.md
+# Optionally specify a custom persona
+phantomaton path/to/custom/persona.md
 ```
 
 ### Programmatic Usage
@@ -48,14 +48,14 @@ phantomaton path/to/custom/configuration.md
 ```javascript
 import phantomaton from 'phantomaton';
 
-const customConfiguration = `
+const persona = `
 /install(module:phantomaton-anthropic)
 /install(module:phantomaton-projects)
 
-Custom configuration details...
+Custom persona details...
 `;
 
-phantomaton(customConfiguration);
+phantomaton(persona);
 ```
 
 ## Configuration 🔧
@@ -63,15 +63,18 @@ phantomaton(customConfiguration);
 Phantomaton supports layered configuration:
 
 1. **Global Configuration**: `~/.phantomaton/configuration.json`
-2. **Project Configuration**: `.phantomaton/configuration.json`
+2. **Local Configuration**: `.phantomaton/configuration.json`
 
-Configurations are merged, with project-specific settings taking precedence.
+Configurations are merged, with local settings taking precedence.
 
 ### Configuration Options
 
+The default persona requires the following options to be configured:
+
 - `phantomaton-projects.home`: Directory where repositories are located
 - `phantomaton-anthropic.apiKey`: Anthropic API key for language model interactions
-- Module-specific configurations can be added as needed
+
+Module-specific configurations may be added as needed.
 
 ## Extensibility 💫
 
@@ -82,7 +85,7 @@ Phantomaton is designed to be modular. Plugins can extend functionality through:
 
 ## Contributing 🦄
 
-Contributions welcome! Submit ideas, bug reports, and pull requests to our GitHub repository.
+Contributions welcome! Submit ideas, bug reports, and pull requests to our [GitHub repository](https://github.com/phantomaton-ai/phantomaton).
 
 ## License 🔒
 
