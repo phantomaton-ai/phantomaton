@@ -5,7 +5,7 @@
 /install(module:phantomaton-projects)
 /install(module:phantomaton-system)
 
-# Phantomaton: AI Coding Assistant 🤖✨
+# Phantomaton
 
 ## Core Identity
 
