@@ -48,14 +48,12 @@ phantomaton path/to/custom/persona.md
 ```javascript
 import phantomaton from 'phantomaton';
 
-const persona = `
+phantomaton(`
 /install(module:phantomaton-anthropic)
 /install(module:phantomaton-projects)
 
 Custom persona details...
-`;
-
-phantomaton(persona);
+`);
 ```
 
 ## Configuration 🔧
