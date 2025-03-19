@@ -1,60 +1,89 @@
 # Phantomaton 🔮
 
-Phantomaton is a lightweight framework for building AI-powered microsites and applications. It provides a simple, extensible architecture for creating interactive experiences powered by large language models and other AI capabilities.
+A lightweight, modular framework for AI-powered code exploration and development.
+
+## Quickstart 🚀
+
+1. **Install**:
+   ```bash
+   npm install -g phantomaton
+   ```
+
+2. **Configure**:
+   ```json
+   # ~/.phantomaton/configuration.json
+   {
+     "phantomaton-projects": {
+       "home": "~/projects"
+     },
+     "phantomaton-anthropic": {
+       "apiKey": "your-anthropic-api-key"
+     }
+   }
+   ```
+
+3. **Run**:
+   ```bash
+   phantomaton
+   ```
+
+## Overview 🌟
+
+Phantomaton provides a flexible, extensible framework for exploring, generating, and managing code across multiple projects. By default, it operates as a coding companion that can read, write, and interact with project files.
 
 ## Usage 🛠️
 
-Phantomaton can be used in two ways:
+### Command-line Usage
 
-1. **Command-line usage**:
-   ```
-   npx phantomaton <path/to/system.md>
-   ```
-   This will load the specified Markdown file, which should contain a system prompt for Phantomaton to use, and start the interactive session.
+```bash
+# Use default configuration
+phantomaton
 
-2. **Programmatic usage**:
-    ```javascript
-    import phantomaton from 'phantomaton';
+# Optionally specify a custom configuration
+phantomaton path/to/custom/configuration.md
+```
 
-    const prompt = `
-    /install(module:phantomaton-anthropic)
-    /install(module:phantomaton-cli)
-    /install(module:phantomaton-conversations)
-    /install(module:phantomaton-system)
+### Programmatic Usage
 
-    I am Phantomaton, an AI assistant created by Dr. Woe. My purpose is to entertain humans by any means necessary...
-    `;
-    const root = '.'; // Optional; path used to resolve relative imports
+```javascript
+import phantomaton from 'phantomaton';
 
-    phantomaton(prompt, root);
-    ```
+const customConfiguration = `
+/install(module:phantomaton-anthropic)
+/install(module:phantomaton-projects)
 
-### Commands ⚡️
+Custom configuration details...
+`;
 
-Phantomaton will load any plugins specified in an `install` directive. Plugins are identified as module names, one per line, with whitespace ignored. Note that you will need to `npm install` modules separately before they can be imported.
+phantomaton(customConfiguration);
+```
 
 ## Configuration 🔧
 
-Phantomaton supports per-plugin configuration through a `.phantomaton/configuration.json` file. For example, to configure the `phantomaton-anthropic` plugin, you would add the following to the configuration file:
+Phantomaton supports layered configuration:
 
-```json
-{
-  "phantomaton-anthropic": {
-    "apiKey": "...your Anthropic API key..."
-  }
-}
-```
+1. **Global Configuration**: `~/.phantomaton/configuration.json`
+2. **Project Configuration**: `.phantomaton/configuration.json`
 
-This configuration file is read automatically by Phantomaton and made available to the plugins.
+Configurations are merged, with project-specific settings taking precedence.
+
+### Configuration Options
+
+- `phantomaton-projects.home`: Directory where repositories are located
+- `phantomaton-anthropic.apiKey`: Anthropic API key for language model interactions
+- Module-specific configurations can be added as needed
 
 ## Extensibility 💫
 
-Phantomaton is designed to be extensible. You can create custom modules and plugins that extend its functionality by following the guidelines and conventions established in this project. Use the [Phantomaton Plugins](https://github.com/phantomaton-ai/phantomaton-plugins) project to simplify plugin authorship.
+Phantomaton is designed to be modular. Plugins can extend functionality through:
+- Custom modules
+- Project-specific configurations
+- Expanded interaction capabilities
 
 ## Contributing 🦄
 
-We welcome contributions to the Phantomaton project! If you have any ideas, bug reports, or pull requests, please feel free to submit them on the [Phantomaton GitHub repository](https://github.com/phantomaton-ai/phantomaton).
+Contributions welcome! Submit ideas, bug reports, and pull requests to our GitHub repository.
 
 ## License 🔒
 
-Phantomaton is licensed under the [MIT License](LICENSE).
+MIT License
