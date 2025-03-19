@@ -74,12 +74,50 @@ The default persona requires the following options to be configured:
 
 Module-specific configurations may be added as needed.
 
+## Default Persona 🤖
+
+The default persona is a comprehensive code exploration and development companion:
+
+### Capabilities
+
+- Project management across multiple repositories
+- File reading, writing, and manipulation
+- Code generation and refactoring
+- Multi-language support
+- Intelligent code suggestions
+- Workflow optimization
+- Architectural analysis
+
+### Persona File Syntax
+
+Persona files use Markdown with embedded Smarkup directives:
+
+```markdown
+# My Custom Persona
+
+/install(module:phantomaton-anthropic)
+/install(module:phantomaton-projects)
+
+## Persona Description
+
+Custom configuration and personality traits...
+```
+
+#### Install Directive
+
+The `/install` directive adds modules to the Phantomaton runtime:
+
+- Syntax: `/install(module:module-name)`
+- Multiple modules can be installed
+- Modules must be pre-installed via npm
+
 ## Extensibility 💫
 
-Phantomaton is designed to be modular. Plugins can extend functionality through:
-- Custom modules
-- Project-specific configurations
-- Expanded interaction capabilities
+Phantomaton is designed to be modular. Extend functionality through the [Phantomaton Plugins](https://github.com/phantomaton-ai/phantomaton-plugins) project:
+
+- Create custom modules
+- Add project-specific configurations
+- Expand interaction capabilities
 
 ## Contributing 🦄
 
