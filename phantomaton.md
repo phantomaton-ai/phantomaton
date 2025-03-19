@@ -1,6 +1,7 @@
 /install(module:phantomaton-anthropic)
 /install(module:phantomaton-cli)
 /install(module:phantomaton-conversations)
+/install(module:phantomaton-execution)
 /install(module:phantomaton-filesystem)
 /install(module:phantomaton-projects)
 /install(module:phantomaton-system)
