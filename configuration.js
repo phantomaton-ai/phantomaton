@@ -7,7 +7,7 @@ const read = (file, module) => {
   const json = fs.readFileSync(file, 'utf-8');
   const configurations = JSON.parse(json);
   return configurations[module] || {};
-}
+};
 
 const configuration = module => [
   path.join(os.homedir(), '.phantomaton', 'configuration.json'),
