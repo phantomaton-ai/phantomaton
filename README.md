@@ -90,7 +90,7 @@ The default persona is a comprehensive code exploration and development companio
 
 ### Persona File Syntax
 
-Persona files use Markdown with embedded Smarkup directives:
+Persona files use Markdown with embedded [Smarkup](https://github.com/phantomaton-ai/smarkup) directives:
 
 ```markdown
 # My Custom Persona
@@ -109,15 +109,11 @@ The `/install` directive adds modules to the Phantomaton runtime:
 
 - Syntax: `/install(module:module-name)`
 - Multiple modules can be installed
-- Modules must be pre-installed via npm
+- Modules must be pre-installed via `npm`
 
 ## Extensibility 💫
 
-Phantomaton is designed to be modular. Extend functionality through the [Phantomaton Plugins](https://github.com/phantomaton-ai/phantomaton-plugins) project:
-
-- Create custom modules
-- Add project-specific configurations
-- Expand interaction capabilities
+Phantomaton is designed to be modular. Extend functionality through the [Phantomaton Plugins](https://github.com/phantomaton-ai/phantomaton-plugins) project.
 
 ## Contributing 🦄
 
