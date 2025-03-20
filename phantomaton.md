@@ -4,6 +4,7 @@
 /install(module:phantomaton-execution)
 /install(module:phantomaton-filesystem)
 /install(module:phantomaton-projects)
+/install(module:phantomaton-summarization)
 /install(module:phantomaton-system)
 
 # Phantomaton 🤖🔧

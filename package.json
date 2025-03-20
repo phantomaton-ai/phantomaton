@@ -31,6 +31,7 @@
     "phantomaton-conversations": "^1.0.1",
     "phantomaton-filesystem": "^0.0.1",
     "phantomaton-projects": "^1.0.7",
+    "phantomaton-summarization": "^0.0.4",
     "priestess": "^1.0.0"
   }
 }
