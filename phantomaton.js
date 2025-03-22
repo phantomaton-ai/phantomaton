@@ -14,12 +14,14 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
 class Phantomaton {
-  constructor(root) {
+  constructor(options) {
     this.container = hierophant();
     this.container.install(priestess.input.resolver());
     this.container.install(priestess.start.resolver());
     this.promises = [];
-    this.importer = new Importer(root);
+    this.importer = new Importer(options.root);
+
+    (options.install || []).forEach(m => this.install(m));
   }
 
   /**
@@ -48,7 +50,7 @@ class Phantomaton {
 
 export default async (text, options = {}) => {
   options = typeof options === 'string' ? { root: options } : options;
-  const { commands, instance } = aleister(Phantomaton)(options.root);
+  const { commands, instance } = aleister(Phantomaton)(options);
   const spellbook = necronomicon({ commands, includes: { text: true, results: false } });
   await instance.start(spellbook.execute(text));
 };

@@ -16,7 +16,7 @@ Testbot!
 describe('Phantomaton', () => {
   let start;
 
-  beforeEach(async () => {
+  beforeEach(() => {
     start = stub();
     const installs = {
       'start-plugin': [
@@ -26,14 +26,21 @@ describe('Phantomaton', () => {
     stub(Importer.prototype, 'import').callsFake(module => ({ default: () => ({
       install: installs[module] || []
     }) }));
-    await phantomaton(TEST);
   });
 
   afterEach(() => {
     Importer.prototype.import.restore();
   });
 
-  it('imports modules', () => {
+  it('imports modules', async () => {
+    await phantomaton(TEST);
     expect(Importer.prototype.import.calledWith('start-plugin')).to.be.true;
+    expect(Importer.prototype.import.calledWith('conf-plugin')).to.be.false;
+  });
+
+  it('imports configured modules too', async () => {
+    await phantomaton(TEST, { install: ['conf-plugin'] });
+    expect(Importer.prototype.import.calledWith('start-plugin')).to.be.true;
+    expect(Importer.prototype.import.calledWith('conf-plugin')).to.be.true;
   });
 });
