@@ -49,7 +49,7 @@ describe('Phantomaton', () => {
     await phantomaton(TEST, '/tmp/foo');
     expect(root).to.equal('/tmp/foo');
     Importer.prototype.import = oldStub;
-  })
+  });
 
   it('imports configured modules too', async () => {
     await phantomaton(TEST, { install: ['conf-plugin'] });
