@@ -32,12 +32,15 @@ class Phantomaton {
    * @example phantomaton.import('phantomaton-anthropic\nphantomaton-cli')
    */
   install(module) {
-    this.promises.push(new Promise(async resolve => {
-      const imported = await this.importer.import(module);
-      const { install } = imported.default(configuration(module));
-      install.forEach(component => this.container.install(component));
-      resolve();
-    }));
+    if (typeof module === 'string') {
+      this.promises.push(new Promise(async resolve => {
+        const imported = await this.importer.import(module);
+        this.install(imported.default(configuration(module)));
+        resolve();
+      }));
+    } else {
+      module.install.forEach(component => this.container.install(component));
+    }
   }
 
   async start(input) {

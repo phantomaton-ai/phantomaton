@@ -56,4 +56,10 @@ describe('Phantomaton', () => {
     expect(Importer.prototype.import.calledWith('start-plugin')).to.be.true;
     expect(Importer.prototype.import.calledWith('conf-plugin')).to.be.true;
   });
+
+  it('accepts instantiated plugins', async () => {
+    await phantomaton('Hi!', { install: [{
+      install: installs['start-plugin']
+    }] });
+  });
 });
