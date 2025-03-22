@@ -46,8 +46,9 @@ class Phantomaton {
   }
 }
 
-export default async (text, root) => {
-  const { commands, instance } = aleister(Phantomaton)(root);
+export default async (text, options = {}) => {
+  options = typeof options === 'string' ? { root: options } : options;
+  const { commands, instance } = aleister(Phantomaton)(options.root);
   const spellbook = necronomicon({ commands, includes: { text: true, results: false } });
   await instance.start(spellbook.execute(text));
 };
