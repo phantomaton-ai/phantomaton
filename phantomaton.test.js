@@ -64,6 +64,13 @@ describe('Phantomaton', () => {
     expect(Importer.prototype.import.calledWith('included-plugin')).to.be.true;
   });
 
+  it('imports modules only once', async () => {
+    await phantomaton(TEST, { install: ['some-plugin', 'some-plugin'] });
+    const calls = Importer.prototype.import.getCalls()
+      .filter(c => c.args[0] === 'some-plugin');
+    expect(calls.length).eq(1);
+  });
+
   it('accepts instantiated plugins', async () => {
     await phantomaton('Hi!', { install: [{
       install: installs['start-plugin']
