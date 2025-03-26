@@ -20,7 +20,9 @@ describe('Phantomaton', () => {
       priestess.start.provider([], () => start)
     ]
   };
+  const includes = { 'including-plugin': ['included-plugin'] };
   const lookup = async (module) => ({ default: () => ({
+    include: includes[module] || [],
     install: installs[module] || []
   }) });
 
@@ -55,6 +57,11 @@ describe('Phantomaton', () => {
     await phantomaton(TEST, { install: ['conf-plugin'] });
     expect(Importer.prototype.import.calledWith('start-plugin')).to.be.true;
     expect(Importer.prototype.import.calledWith('conf-plugin')).to.be.true;
+  });
+
+  it('imports included modules', async () => {
+    await phantomaton(TEST, { install: ['including-plugin'] });
+    expect(Importer.prototype.import.calledWith('included-plugin')).to.be.true;
   });
 
   it('accepts instantiated plugins', async () => {
