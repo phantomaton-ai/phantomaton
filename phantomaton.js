@@ -18,10 +18,9 @@ class Phantomaton {
     this.container = hierophant();
     this.container.install(priestess.input.resolver());
     this.container.install(priestess.start.resolver());
-    this.promises = [];
     this.importer = new Importer(options.root);
-
-    (options.install || []).forEach(m => this.install(m));
+    this.installed = [];
+    this.installations = Promise.all((options.install || []).map(m => this.install(m)));
   }
 
   /**
@@ -31,29 +30,30 @@ class Phantomaton {
    * @returns {void}
    * @example phantomaton.import('phantomaton-anthropic\nphantomaton-cli')
    */
-  install(module) {
+  async install(module) {
+    if (this.installed.includes(module)) return;
+    this.installed.push(module);
     if (typeof module === 'string') {
-      this.promises.push(new Promise(async resolve => {
-        const imported = await this.importer.import(module);
-        this.install(imported.default(configuration(module)));
-        resolve();
-      }));
+      const imported = await this.importer.import(module);
+      this.install(imported.default(configuration(module)));
     } else {
+      await Promise.all((module.include || []).map(m => this.install(m)));
       module.install.forEach(component => this.container.install(component));
     }
   }
 
   async start(input) {
+    await this.installations;
     this.container.install(priestess.input.provider([], () => () => input));
-    await Promise.all(this.promises);
     const [start] = this.container.resolve(priestess.start.resolve);
     return start();
   }
 }
 
-export default (text, options = {}) => {
+export default async (text, options = {}) => {
   options = typeof options === 'string' ? { root: options } : options;
   const { commands, instance } = aleister(Phantomaton)(options);
-  const spellbook = necronomicon({ commands, includes: { text: true, results: false } });
-  return instance.start(spellbook.execute(text));
+  const includes = { promises: true, text: true, results: false };
+  const spellbook = necronomicon({ commands, includes });
+  return instance.start(await spellbook.execute(text));
 };
