@@ -113,7 +113,27 @@ The `/install` directive adds modules to the Phantomaton runtime:
 
 ## Extensibility 💫
 
-Phantomaton is designed to be modular. Extend functionality through the [Phantomaton Plugins](https://github.com/phantomaton-ai/phantomaton-plugins) project.
+Phantomaton plugins are functions that accept a configuration and return an object with two key properties:
+
+- `include`: An array of dependent plugin module names to be recursively installed
+- `install`: An array of components to be added to the Phantomaton runtime
+
+Example plugin structure:
+```javascript
+export default (config) => ({
+  // Optional: Other plugins to install first
+  include: ['dependency-plugin-1', 'dependency-plugin-2'],
+  
+  // Components to install in the Phantomaton runtime
+  install: [
+    // Hierophant components like resolvers, providers, etc.
+    someResolver(),
+    someProvider(config)
+  ]
+});
+```
+
+Extend Phantomaton's functionality through the [Phantomaton Plugins](https://github.com/phantomaton-ai/phantomaton-plugins) project or by creating your own custom plugins.
 
 ## Contributing 🦄
 
