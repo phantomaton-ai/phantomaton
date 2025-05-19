@@ -1,6 +1,6 @@
 {
   "name": "phantomaton",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "bin": "cli.js",
   "main": "phantomaton.js",
   "scripts": {
