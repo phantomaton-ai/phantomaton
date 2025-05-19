@@ -15,12 +15,17 @@ const __dirname = path.dirname(__filename);
 
 class Phantomaton {
   constructor(options) {
+    this.configurations = options.configurations || {};
     this.container = hierophant();
     this.container.install(priestess.input.resolver());
     this.container.install(priestess.start.resolver());
     this.importer = new Importer(options.root);
     this.installed = [];
     this.installations = Promise.all((options.install || []).map(m => this.install(m)));
+  }
+
+  configuration(module) {
+    return { ...configuration(module), ...(this.configurations[module] || {}) };
   }
 
   /**
@@ -35,7 +40,7 @@ class Phantomaton {
     this.installed.push(module);
     if (typeof module === 'string') {
       const imported = await this.importer.import(module);
-      this.install(imported.default(configuration(module)));
+      this.install(imported.default(this.configuration(module)));
     } else {
       await Promise.all((module.include || []).map(m => this.install(m)));
       module.install.forEach(component => this.container.install(component));

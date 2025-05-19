@@ -56,12 +56,27 @@ Custom persona details...
 `);
 ```
 
+### Programmatic Options
+
+```javascript
+phantomaton(prompt, {
+  configurations: {              // Configuration overrides (see below)
+    'phantomaton-gemini': {
+      modalities: ['TEXT', 'IMAGE'],
+      model: 'gemini-2.0-flash-preview-image-generation'
+    }
+  },
+  install: ['phantomaton-gemini'] // Plugins to install
+});
+```
+
 ## Configuration 🔧
 
 Phantomaton supports layered configuration:
 
 1. **Global Configuration**: `~/.phantomaton/configuration.json`
 2. **Local Configuration**: `.phantomaton/configuration.json`
+3. **Programmatic Configuration**: `options.configuration`
 
 Configurations are merged, with local settings taking precedence.
 
